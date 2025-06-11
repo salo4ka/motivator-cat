@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Котики-мотиваторы</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -157,6 +158,11 @@
     </div>
 
     <script>
+        // Инициализация Telegram WebApp
+        window.Telegram.WebApp.ready();
+        // Получение данных пользователя
+        const user = window.Telegram.WebApp.initDataUnsafe?.user;
+        
         const motivations = [
             "💡 Котики спят 16 часов в сутки и чувствуют себя продуктивными!",
             "🎯 Если котик может поймать лазерную точку, ты можешь поймать дедлайн!",
