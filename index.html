@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Котики-мотиваторы</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .meme-container {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 500px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .meme-container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+            animation: shine 3s infinite;
+        }
+        
+        @keyframes shine {
+            0% { transform: rotate(0deg) translate(-100%, -100%); }
+            100% { transform: rotate(360deg) translate(-100%, -100%); }
+        }
+        
+        .cat-ascii {
+            font-family: 'Courier New', monospace;
+            font-size: 24px;
+            color: #ff6b6b;
+            margin: 20px 0;
+            white-space: pre-line;
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+        
+        .meme-text {
+            font-size: 18px;
+            color: #333;
+            margin: 15px 0;
+            font-weight: bold;
+        }
+        
+        .top-text {
+            font-size: 22px;
+            color: #4ecdc4;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+        
+        .bottom-text {
+            font-size: 20px;
+            color: #ff6b6b;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 10px;
+        }
+        
+        .motivation-button {
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .motivation-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        
+        .sparkle {
+            position: absolute;
+            color: #ffd700;
+            font-size: 20px;
+            animation: sparkle 1.5s infinite;
+        }
+        
+        @keyframes sparkle {
+            0%, 100% { opacity: 0; transform: scale(0); }
+            50% { opacity: 1; transform: scale(1); }
+        }
+        
+        .cat-facts {
+            background: linear-gradient(45deg, #ffeaa7, #fab1a0);
+            padding: 15px;
+            border-radius: 15px;
+            margin-top: 20px;
+            font-style: italic;
+            color: #2d3436;
+        }
+    </style>
+</head>
+<body>
+    <div class="meme-container">
+        <div class="sparkle" style="top: 10%; left: 10%;">✨</div>
+        <div class="sparkle" style="top: 15%; right: 15%;">⭐</div>
+        <div class="sparkle" style="bottom: 20%; left: 20%;">✨</div>
+        <div class="sparkle" style="bottom: 15%; right: 10%;">⭐</div>
+        
+        <div class="top-text">Когда понедельник</div>
+        
+        <div class="cat-ascii">
+    /\   /\  
+   (  . .)  
+    )   (   
+   (  v  )  
+  ^^  -  ^^
+        </div>
+        
+        <div class="bottom-text">Но ты котик и всё пофиг</div>
+        
+        <div class="meme-text">
+            😸 Помни: даже коты иногда работают<br>
+            (когда ловят мышей в 3 утра)
+        </div>
+        
+        <button class="motivation-button" onclick="changeMotivation()">
+            🐱 Новая мотивация от котика
+        </button>
+        
+        <div class="cat-facts" id="motivation-text">
+            💡 Котики спят 16 часов в сутки и чувствуют себя продуктивными!
+        </div>
+    </div>
+
+    <script>
+        const motivations = [
+            "💡 Котики спят 16 часов в сутки и чувствуют себя продуктивными!",
+            "🎯 Если котик может поймать лазерную точку, ты можешь поймать дедлайн!",
+            "⚡ Работай как котик: с достоинством и периодическими перерывами на вылизывание",
+            "🌟 Котики не переживают из-за понедельников - и ты не переживай!",
+            "🏆 Помни: даже самый ленивый котик встаёт за едой. Встань за своими целями!",
+            "💪 Котики всегда приземляются на лапы. Ты тоже справишься!",
+            "🎨 Работай творчески: котики превращают коробки в замки!",
+            "☕ Как котик мурлычет от удовольствия, так и ты наслаждайся процессом!",
+            "🎪 Котики играют даже в старости. Не забывай играть в работе!",
+            "🌈 Котики видят мир по-своему. Смотри на задачи под новым углом!"
+        ];
+        
+        function changeMotivation() {
+            const randomMotivation = motivations[Math.floor(Math.random() * motivations.length)];
+            document.getElementById('motivation-text').textContent = randomMotivation;
+            
+            // Добавляем эффект появления
+            const element = document.getElementById('motivation-text');
+            element.style.transform = 'scale(0.8)';
+            element.style.opacity = '0.5';
+            setTimeout(() => {
+                element.style.transform = 'scale(1)';
+                element.style.opacity = '1';
+            }, 100);
+        }
+        
+        // Автоматическая смена мотивации каждые 10 секунд
+        setInterval(changeMotivation, 10000);
+    </script>
+</body>
+</html>
